@@ -13,6 +13,7 @@ box_annotator = sv.BoxAnnotator(
     text_thickness=2,
     text_scale=1
 )
+live = st.button("Start Live Detection")
 feed = st.button("Upload File")
 if feed:
 # Streamlit file uploader
@@ -74,9 +75,9 @@ if feed:
         st.markdown(f"[Download the output video](./{output_file})")
 
 
-else:
+elif live:
         cap = cv2.VideoCapture(0)
-
+    
         # Get video properties
         frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
