@@ -13,7 +13,6 @@ box_annotator = sv.BoxAnnotator(
     text_thickness=2,
     text_scale=1
 )
-live = st.button("Start Live Detection")
 feed = st.button("Upload File")
 if feed:
 # Streamlit file uploader
