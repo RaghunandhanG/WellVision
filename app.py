@@ -76,43 +76,43 @@ if feed:
 
 elif live:
         cap = cv2.VideoCapture(0)
-    
+        if cap.isOpened():
         # Get video properties
-        frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        fps = cap.get(cv2.CAP_PROP_FPS)
-
-        # Set up the VideoWriter object to save the output video
-        output_file = 'output_video.mp4'
-        fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4
-        out = cv2.VideoWriter(output_file, fourcc, fps, (frame_width, frame_height))
-
-        # Streamlit container to display the video frames
-        st_frame = st.empty()
-
-        # Read and process video frames
-        while cap.isOpened():
-            ret, frame = cap.read()
-            if not ret:
-                break
-            
-            # Run the YOLO model on the frame
-            result = model(frame)[0]
-            
-            # Convert YOLO results to supervision Detections
-            detections = sv.Detections.from_ultralytics(result)
-            
-            # Annotate the frame with detections
-            frame = box_annotator.annotate(scene=frame, detections=detections)
-            
-            # Write the annotated frame to the output video
-            out.write(frame)
-            
-            # Convert the frame to RGB format for displaying with Streamlit
-            frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-            
-            # Display the frame in Streamlit
-            st_frame.image(frame_rgb, caption='feed')
+            frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            fps = cap.get(cv2.CAP_PROP_FPS)
+    
+            # Set up the VideoWriter object to save the output video
+            output_file = 'output_video.mp4'
+            fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4
+            out = cv2.VideoWriter(output_file, fourcc, fps, (frame_width, frame_height))
+    
+            # Streamlit container to display the video frames
+            st_frame = st.empty()
+    
+            # Read and process video frames
+            while cap.isOpened():
+                ret, frame = cap.read()
+                if not ret:
+                    break
+                
+                # Run the YOLO model on the frame
+                result = model(frame)[0]
+                
+                # Convert YOLO results to supervision Detections
+                detections = sv.Detections.from_ultralytics(result)
+                
+                # Annotate the frame with detections
+                frame = box_annotator.annotate(scene=frame, detections=detections)
+                
+                # Write the annotated frame to the output video
+                out.write(frame)
+                
+                # Convert the frame to RGB format for displaying with Streamlit
+                frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                
+                # Display the frame in Streamlit
+                st_frame.image(frame_rgb, caption='feed')
 
         # Release the video capture and writer objects
         cap.release()
