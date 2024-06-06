@@ -71,8 +71,8 @@ if feed:
         out.release()
 
         # Notify the user and provide a link to download the video
-        st.success(f"Video saved as {output_file}")
-        st.video(output_file)
+        if output_file is not None:
+            st.video(output_file)
         st.markdown(f"[Download the output video](./{output_file})")
 
 
