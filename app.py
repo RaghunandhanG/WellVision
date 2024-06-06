@@ -57,7 +57,8 @@ if feed:
             frame = box_annotator.annotate(scene=frame, detections=detections)
             
             # Write the annotated frame to the output video
-            out.write(frame)
+            if frame is not None:
+                out.write(frame)
             
             # Convert the frame to RGB format for displaying with Streamlit
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
