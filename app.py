@@ -115,8 +115,8 @@ elif live:
                 st_frame.image(frame_rgb, caption='feed')
 
         # Release the video capture and writer objects
-        cap.release()
-        out.release()
+                cap.release()
+                out.release()
 
         # Notify the user and provide a link to download the video
         st.success(f"Video saved as {output_file}")
