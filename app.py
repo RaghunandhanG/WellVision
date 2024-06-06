@@ -57,8 +57,8 @@ if feed:
             frame = box_annotator.annotate(scene=frame, detections=detections)
             
             # Write the annotated frame to the output video
-            if frame is not None:
-                out.write(frame)
+    
+            out.write(frame)
             
             # Convert the frame to RGB format for displaying with Streamlit
             frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
@@ -71,8 +71,7 @@ if feed:
         out.release()
 
         # Notify the user and provide a link to download the video
-        if output_file is not None:
-            st.video(output_file)
+        st.video(output_file)
         st.markdown(f"[Download the output video](./{output_file})")
 
 
