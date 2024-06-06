@@ -71,7 +71,6 @@ if feed:
 
         # Notify the user and provide a link to download the video
         st.success(f"Video saved as {output_file}")
-        st.video(output_file)
         st.markdown(f"[Download the output video](./{output_file})")
 
 
@@ -121,5 +120,4 @@ elif live:
 
         # Notify the user and provide a link to download the video
         st.success(f"Video saved as {output_file}")
-        st.video(output_file)
         st.markdown(f"[Download the output video](./{output_file})")
