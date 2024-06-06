@@ -75,7 +75,7 @@ if feed:
 
 
 elif live:
-        cap = cv2.VideoCapture()
+        cap = cv2.VideoCapture(0)
     
         # Get video properties
         frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
