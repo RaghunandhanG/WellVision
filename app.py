@@ -71,8 +71,7 @@ if feed:
         out.release()
 
         # Notify the user and provide a link to download the video
-        st.video(output_file)
-        st.markdown(f"[Download the output video](./{output_file})")
+
 
 
 elif live:
